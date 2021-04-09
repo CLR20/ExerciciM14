@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th= "http://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title>Shops</title>
+</head>
+
+<body class="well" style="background-color: #F0F8FF;">
+	
+	<h3 class="text-center"><strong><u>SHOPS IN WHITECOLLAR</u></strong></h3>
+	
+	<br><br>
+	<div class="table-responsive">
+	<table class="table table-striped table-bordered" style="background-color: #FFFFFF;">
+		<thead class="thead-dark">
+			<tr> <th> ID <th> NAME <th> CAPACITY </tr>
+		</thead>
+		<tbody>
+			<tr th:each="shop: ${shops}">
+				<td><span th:text="${shop.getId()}"></span></td>
+				<td><span th:text="${shop.getName()}"></span></td>
+				<td><span th:text="${shop.getCapacity()}"></span></td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	
+	<div class="btn-toolbar" role="toolbar" style="justify-content: center; display: flex;">	
+		<a class="btn btn-info" href="/whitecollar/collars">SHOW ALL COLLARS</a>
+ 	</div>
+	<br>
+	
+    <div class="container">
+		<form action="/whitecollar/shops" method="post">
+			<h5><strong>*ADD SHOP*</strong></h5>
+			NAME: <input type=text name=name>
+			CAPACITY: <input type=text name=capacity>
+			<br><br>
+			<button type="submit" class="btn btn-success">ADD SHOP</button>
+		</form>
+	</div>
+	<br><br>
+	
+	<div class="container">
+		<form action="/whitecollar/shops_deleted" method="post">
+			<h5><strong>*DELETE SHOP*</strong></h5>
+			SHOP ID: <input type=text name=idshop>
+			<br><br>
+			<button type="submit" class="btn btn-danger">DELETE SHOP</button>
+		</form>
+	</div>	
+	<br><br>
+	
+	<div class="container">
+		<form action="/whitecollar/shops/{id}/collars" method="get">
+			<h5><strong>*SHOW COLLARS BY SHOP*</strong></h5>
+			SHOP ID: <input type=text name=id> 	
+			<br><br>		
+			<button type="submit" class="btn btn-info">SHOW COLLARS IN SHOP</button>
+		</form>
+	</div>
+	<br><br>
+	
+	<div class="container">
+		<form action="/whitecollar/shops/{id}/collars" method=post>
+			<h5><strong>*ADD COLLAR BY SHOP*</strong></h5>
+			SHOP: <input type=text name=idshop>
+			COLLAR NAME: <input type=text name=name>
+			CREATOR: <input type=text name=creator>
+			<br><br>PRICE <input type=text name=price>
+			ENTRY DATE: <input type=text name=entryDate>
+			<br><br>
+			<button type="submit" class="btn btn-success">ADD COLLAR</button>
+		</form>
+	</div>
+	<br><br>
+	
+	<div class="container">
+		<form action="/whitecollar/shops/{id}/collars_deleted" method=post>
+			<h5><strong>*DELETE COLLARS BY SHOP*</strong></h5>
+			SHOP ID: <input type=text name=idshop>
+			<br><br>
+			<button type="submit" class="btn btn-danger">DELETE COLLARS IN SHOP</button>
+		</form>
+	</div>
+
+</body>
+</html>
